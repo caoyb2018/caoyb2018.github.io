@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>单例模式 | 一个前端小青年的学习笔记</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="good good study, day day up">
+    <link rel="preload" href="/assets/css/0.styles.f164480b.css" as="style"><link rel="preload" href="/assets/js/app.aee3cfb5.js" as="script"><link rel="preload" href="/assets/js/2.a8f4ff1c.js" as="script"><link rel="preload" href="/assets/js/27.13266d3a.js" as="script"><link rel="prefetch" href="/assets/js/10.6e9d8d1f.js"><link rel="prefetch" href="/assets/js/11.4477738e.js"><link rel="prefetch" href="/assets/js/12.dd7de0f3.js"><link rel="prefetch" href="/assets/js/13.940226d2.js"><link rel="prefetch" href="/assets/js/14.74953c26.js"><link rel="prefetch" href="/assets/js/15.c27128b2.js"><link rel="prefetch" href="/assets/js/16.08afb9c0.js"><link rel="prefetch" href="/assets/js/17.e49c979f.js"><link rel="prefetch" href="/assets/js/18.abd408c1.js"><link rel="prefetch" href="/assets/js/19.6339373c.js"><link rel="prefetch" href="/assets/js/20.ed3f266c.js"><link rel="prefetch" href="/assets/js/21.b68df19f.js"><link rel="prefetch" href="/assets/js/22.285ffd36.js"><link rel="prefetch" href="/assets/js/23.f725f85e.js"><link rel="prefetch" href="/assets/js/24.95675f94.js"><link rel="prefetch" href="/assets/js/25.a14acace.js"><link rel="prefetch" href="/assets/js/26.8a2fc05c.js"><link rel="prefetch" href="/assets/js/28.eeace58b.js"><link rel="prefetch" href="/assets/js/29.5918a60c.js"><link rel="prefetch" href="/assets/js/3.b8c48841.js"><link rel="prefetch" href="/assets/js/30.5eaa7ec9.js"><link rel="prefetch" href="/assets/js/31.932206dd.js"><link rel="prefetch" href="/assets/js/4.fca74266.js"><link rel="prefetch" href="/assets/js/5.e71be580.js"><link rel="prefetch" href="/assets/js/6.a030c9c4.js"><link rel="prefetch" href="/assets/js/7.b6f03a85.js"><link rel="prefetch" href="/assets/js/8.0e976cce.js"><link rel="prefetch" href="/assets/js/9.b896629e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f164480b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">一个前端小青年的学习笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/jsx到html/" class="nav-link">
+  jsx到html
+</a></div><div class="nav-item"><a href="/javaScript/" class="nav-link">
+  javaScript
+</a></div><div class="nav-item"><a href="/数据结构与算法/" class="nav-link">
+  数据结构与算法
+</a></div><div class="nav-item"><a href="/设计模式/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/前端性能优化/" class="nav-link">
+  前端性能优化
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/jsx到html/" class="nav-link">
+  jsx到html
+</a></div><div class="nav-item"><a href="/javaScript/" class="nav-link">
+  javaScript
+</a></div><div class="nav-item"><a href="/数据结构与算法/" class="nav-link">
+  数据结构与算法
+</a></div><div class="nav-item"><a href="/设计模式/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/前端性能优化/" class="nav-link">
+  前端性能优化
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="sidebar-link">介绍</a></li><li><a href="/设计模式/单例模式.html" class="active sidebar-link">单例模式</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/设计模式/单例模式.html#实现单例模式" class="sidebar-link">实现单例模式</a></li><li class="sidebar-sub-header"><a href="/设计模式/单例模式.html#透明的单例模式" class="sidebar-link">透明的单例模式</a></li><li class="sidebar-sub-header"><a href="/设计模式/单例模式.html#代理实现单例模式" class="sidebar-link">代理实现单例模式</a></li><li class="sidebar-sub-header"><a href="/设计模式/单例模式.html#javascript中的单例以及通用的单例" class="sidebar-link">javaScript中的单例以及通用的单例</a></li></ul></li><li><a href="/设计模式/策略模式.html" class="sidebar-link">策略模式</a></li><li><a href="/设计模式/代理模式.html" class="sidebar-link">代理模式</a></li><li><a href="/设计模式/迭代器模式.html" class="sidebar-link">迭代器模式</a></li><li><a href="/设计模式/发布-订阅模式.html" class="sidebar-link">发布-订阅模式</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="单例模式"><a href="#单例模式" class="header-anchor">#</a> 单例模式</h1> <p><strong>保证一个类仅有一个实例，并提供一个访问它的全局访问点</strong></p> <h2 id="实现单例模式"><a href="#实现单例模式" class="header-anchor">#</a> 实现单例模式</h2> <p>实现一个标准的单例模式最简单的方式就是用一个变量来标志当前某个类是否已经创建过对象。如果已经创建过对象则直接返回这个对象，如果没有，则创建对象后返回该对象</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> Storage <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+Storage<span class="token punctuation">.</span>getInstance <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> instance <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Instance</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> instance1 <span class="token operator">=</span> Storage<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> instance2 <span class="token operator">=</span> Sroegae<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+instance1 <span class="token operator">===</span> instance2
+</code></pre></div><p>通过Storage.getInstance可以获取到Storage的唯一对象,这种方式较为简单但是也存在问题，这种方式增加了这个类的“不透明性”，Storage类的使用者必须知道这是一个单例类得通过getInstance方法来获取它的实例。而不能通过 <strong>new Storage()</strong> 的方式。否则它仍然可以有多个实例。</p> <h2 id="透明的单例模式"><a href="#透明的单例模式" class="header-anchor">#</a> 透明的单例模式</h2> <p>实现一个透明的单例模式的目标即不需要这个类的使用者知道这是一个单例类。并没有特定的方法来获取到这个类的实例。如果需要一个实例。通过 <strong>new XXX</strong> 就可以了</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> CreateDiv <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token keyword">var</span> instance <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token function-variable function">CreateDiv</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">html</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>html <span class="token operator">=</span> html<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        instance <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token class-name">CreateDiv</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">init</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    div<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>html<span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>div<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+    <span class="token keyword">return</span> CreateDiv<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><p>这段代码以创建一个div的例子实现了一个透明的单例模式。但还是纯在了一些问题，createDiv方法中做了两件事情。一是创建对象并init二是确保只有一个实例，实际上这并不符合“单一职责原则”</p> <h2 id="代理实现单例模式"><a href="#代理实现单例模式" class="header-anchor">#</a> 代理实现单例模式</h2> <p>通过代理实现某个类的单例，而这个类只需要是一个普通的类</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> <span class="token function-variable function">CreateDiv</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">html</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>html <span class="token operator">=</span> html<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">CreateDiv</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">init</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    div<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>html<span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>div<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> ProxySingletonCreateDiv <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> instance <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">html</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CreateDiv</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><p>上面的代码将CreateDiv中负责管理单例的部分移除使其成为一个普通的类，再创建其代理类在代理类中负责管理单例。</p> <p><a href="/设计模式/代理模式.html">代理模式</a></p> <p>但是这样也同样增加了这个类的不透明性？</p> <h2 id="javascript中的单例以及通用的单例"><a href="#javascript中的单例以及通用的单例" class="header-anchor">#</a> javaScript中的单例以及通用的单例</h2> <p>上面的写法其实更倾向于类与对象的写法。对象总是来自于类，但是在js中其实并没有类的概念。只有构造函数</p> <p>对象何必来自于类</p> <p><strong>保证只一个实例，并提供一个访问它的全局访问点</strong></p> <p>比如创建一个div。在js中并不需要通过new XXX的形式来创建一个div，直接写其实会更香</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> <span class="token function-variable function">div</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">html</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    div<span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>html<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> div
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> CreateDiv <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> div <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">html</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>div<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            div <span class="token operator">=</span> <span class="token function">div</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> div
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span><span class="token function">createDiv</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><p>但是这样其实并不是很让人满意如果我们想要的不是一个div， 而是一个button, 一个其他的任意元素呢？</p> <p>不如来重写CreateDiv吧</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> <span class="token function-variable function">div</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">html</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    div<span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>html<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> div
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> <span class="token function-variable function">button</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">html</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> button <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    button<span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>html<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> button
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> getSingle <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">html</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>result<span class="token punctuation">)</span><span class="token punctuation">{</span>
+           result <span class="token operator">=</span> <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> result
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="prev router-link-active">
+        介绍
+      </a></span> <span class="next"><a href="/设计模式/策略模式.html">
+        策略模式
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.aee3cfb5.js" defer></script><script src="/assets/js/2.a8f4ff1c.js" defer></script><script src="/assets/js/27.13266d3a.js" defer></script>
+  </body>
+</html>

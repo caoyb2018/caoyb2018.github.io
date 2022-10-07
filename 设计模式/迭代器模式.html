@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>迭代器模式 | 一个前端小青年的学习笔记</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="good good study, day day up">
+    <link rel="preload" href="/assets/css/0.styles.f164480b.css" as="style"><link rel="preload" href="/assets/js/app.aee3cfb5.js" as="script"><link rel="preload" href="/assets/js/2.a8f4ff1c.js" as="script"><link rel="preload" href="/assets/js/30.5eaa7ec9.js" as="script"><link rel="prefetch" href="/assets/js/10.6e9d8d1f.js"><link rel="prefetch" href="/assets/js/11.4477738e.js"><link rel="prefetch" href="/assets/js/12.dd7de0f3.js"><link rel="prefetch" href="/assets/js/13.940226d2.js"><link rel="prefetch" href="/assets/js/14.74953c26.js"><link rel="prefetch" href="/assets/js/15.c27128b2.js"><link rel="prefetch" href="/assets/js/16.08afb9c0.js"><link rel="prefetch" href="/assets/js/17.e49c979f.js"><link rel="prefetch" href="/assets/js/18.abd408c1.js"><link rel="prefetch" href="/assets/js/19.6339373c.js"><link rel="prefetch" href="/assets/js/20.ed3f266c.js"><link rel="prefetch" href="/assets/js/21.b68df19f.js"><link rel="prefetch" href="/assets/js/22.285ffd36.js"><link rel="prefetch" href="/assets/js/23.f725f85e.js"><link rel="prefetch" href="/assets/js/24.95675f94.js"><link rel="prefetch" href="/assets/js/25.a14acace.js"><link rel="prefetch" href="/assets/js/26.8a2fc05c.js"><link rel="prefetch" href="/assets/js/27.13266d3a.js"><link rel="prefetch" href="/assets/js/28.eeace58b.js"><link rel="prefetch" href="/assets/js/29.5918a60c.js"><link rel="prefetch" href="/assets/js/3.b8c48841.js"><link rel="prefetch" href="/assets/js/31.932206dd.js"><link rel="prefetch" href="/assets/js/4.fca74266.js"><link rel="prefetch" href="/assets/js/5.e71be580.js"><link rel="prefetch" href="/assets/js/6.a030c9c4.js"><link rel="prefetch" href="/assets/js/7.b6f03a85.js"><link rel="prefetch" href="/assets/js/8.0e976cce.js"><link rel="prefetch" href="/assets/js/9.b896629e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f164480b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">一个前端小青年的学习笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/jsx到html/" class="nav-link">
+  jsx到html
+</a></div><div class="nav-item"><a href="/javaScript/" class="nav-link">
+  javaScript
+</a></div><div class="nav-item"><a href="/数据结构与算法/" class="nav-link">
+  数据结构与算法
+</a></div><div class="nav-item"><a href="/设计模式/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/前端性能优化/" class="nav-link">
+  前端性能优化
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/jsx到html/" class="nav-link">
+  jsx到html
+</a></div><div class="nav-item"><a href="/javaScript/" class="nav-link">
+  javaScript
+</a></div><div class="nav-item"><a href="/数据结构与算法/" class="nav-link">
+  数据结构与算法
+</a></div><div class="nav-item"><a href="/设计模式/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/前端性能优化/" class="nav-link">
+  前端性能优化
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="sidebar-link">介绍</a></li><li><a href="/设计模式/单例模式.html" class="sidebar-link">单例模式</a></li><li><a href="/设计模式/策略模式.html" class="sidebar-link">策略模式</a></li><li><a href="/设计模式/代理模式.html" class="sidebar-link">代理模式</a></li><li><a href="/设计模式/迭代器模式.html" class="active sidebar-link">迭代器模式</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/设计模式/迭代器模式.html#内部迭代器" class="sidebar-link">内部迭代器</a></li><li class="sidebar-sub-header"><a href="/设计模式/迭代器模式.html#外部迭代器" class="sidebar-link">外部迭代器</a></li><li class="sidebar-sub-header"><a href="/设计模式/迭代器模式.html#其他迭代器" class="sidebar-link">其他迭代器</a></li></ul></li><li><a href="/设计模式/发布-订阅模式.html" class="sidebar-link">发布-订阅模式</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="迭代器模式"><a href="#迭代器模式" class="header-anchor">#</a> 迭代器模式</h1> <p>迭代器模式是指一种方法能顺序访问一个聚合对象中的各个元素，而不需要暴漏该对象的内部标识。迭代器模式可以把迭代过程从业务中福利，使用迭代器模式后不需要关心对象的内部结构也可以按顺序访问其中的每个元素</p> <p>迭代器模式无非就是循环访问聚合对象中的各个元素，比如数组中的map</p> <div class="language-js extra-class"><pre class="language-js"><code>$<span class="token punctuation">.</span><span class="token function">each</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">i<span class="token punctuation">,</span>n</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">下标</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>i<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">值</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>n<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>当然自己想实现一个each函数也是非常简单的事情</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> <span class="token function-variable function">each</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">arr<span class="token punctuation">,</span> callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">callback</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="内部迭代器"><a href="#内部迭代器" class="header-anchor">#</a> 内部迭代器</h2> <p>上面实现的each其实就是一个内部迭代器。内部迭代器完全接手整个迭代过程。内部定义好迭代规则</p> <p>内部迭代器的调用很简单，外界跟内部迭代器的交互也只是一次初始调用，但这可以理解内部迭代器的课复用性并不高这也是内部迭代器的缺点</p> <p>比如用内部迭代器判断两个数组的值是否相等</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> <span class="token function-variable function">compare</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">arr1<span class="token punctuation">,</span> arr2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>arr1<span class="token punctuation">.</span>length <span class="token operator">!==</span> arr2<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">each</span><span class="token punctuation">(</span>arr1<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">index<span class="token punctuation">,</span> item</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>item <span class="token operator">!==</span> arr2<span class="token punctuation">[</span>indedx<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这个函数写的确实不是特别漂亮</p> <h2 id="外部迭代器"><a href="#外部迭代器" class="header-anchor">#</a> 外部迭代器</h2> <p>相对而言外部迭代器的顺序和迭代过程是可以由外部控制的。这样的话调用起来会比较麻烦但是也更加灵活</p> <p>实现一个外部迭代器</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> <span class="token function-variable function">Iterator</span><span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token parameter">obj</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> current <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">next</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        current <span class="token operator">=</span> current<span class="token operator">+</span><span class="token number">1</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">isDOne</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> current <span class="token operator">&gt;=</span> obj<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">getCurrent</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> obj<span class="token punctuation">[</span>current<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        next<span class="token punctuation">,</span>
+        isDOne<span class="token punctuation">,</span>
+        getCurrent<span class="token punctuation">,</span>
+        length<span class="token operator">:</span> obj<span class="token punctuation">.</span>length
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在外部迭代器的基础上再实现一个compare函数</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> <span class="token function-variable function">compare</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">arr1<span class="token punctuation">,</span> arr2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> iterator1 <span class="token operator">=</span> <span class="token function">Iterator</span><span class="token punctuation">(</span>arr1<span class="token punctuation">)</span>
+    <span class="token keyword">var</span> iterator2 <span class="token operator">=</span> <span class="token function">Iterator</span><span class="token punctuation">(</span>arr2<span class="token punctuation">)</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>arr1<span class="token punctuation">.</span>length <span class="token operator">!==</span> arr2<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>iterator1<span class="token punctuation">.</span><span class="token function">isDone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>iterator2<span class="token punctuation">.</span><span class="token function">isDone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>iterator1<span class="token punctuation">.</span><span class="token function">getCurrent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!==</span> iterator2<span class="token punctuation">.</span><span class="token function">getCurrent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        iterator2<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        iterator2<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这个compare函数比之前实现的确实要好一些</p> <p>？？？</p> <h2 id="其他迭代器"><a href="#其他迭代器" class="header-anchor">#</a> 其他迭代器</h2> <h3 id="array-和-object"><a href="#array-和-object" class="header-anchor">#</a> Array 和 Object</h3> <p>迭代器不应该只能迭代数组还可以迭代如arguements、 {'0': 0, '1': 1}等一些类似于数组的对象。只要是被聚合的对象有length并可以通过length访问值就可以迭代</p> <h3 id="倒序迭代器"><a href="#倒序迭代器" class="header-anchor">#</a> 倒序迭代器</h3> <p>迭代器的迭代顺序应该是可以控制的不只是可以顺序访问也应该可以倒叙</p> <h3 id="中止迭代器"><a href="#中止迭代器" class="header-anchor">#</a> 中止迭代器</h3> <p>类似于for循环中的break一样。迭代器的迭代过程是可以被中止的</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/设计模式/代理模式.html" class="prev">
+        代理模式
+      </a></span> <span class="next"><a href="/设计模式/发布-订阅模式.html">
+        发布-订阅模式
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.aee3cfb5.js" defer></script><script src="/assets/js/2.a8f4ff1c.js" defer></script><script src="/assets/js/30.5eaa7ec9.js" defer></script>
+  </body>
+</html>

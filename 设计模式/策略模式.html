@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>策略模式 | 一个前端小青年的学习笔记</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="good good study, day day up">
+    <link rel="preload" href="/assets/css/0.styles.f164480b.css" as="style"><link rel="preload" href="/assets/js/app.aee3cfb5.js" as="script"><link rel="preload" href="/assets/js/2.a8f4ff1c.js" as="script"><link rel="preload" href="/assets/js/29.5918a60c.js" as="script"><link rel="prefetch" href="/assets/js/10.6e9d8d1f.js"><link rel="prefetch" href="/assets/js/11.4477738e.js"><link rel="prefetch" href="/assets/js/12.dd7de0f3.js"><link rel="prefetch" href="/assets/js/13.940226d2.js"><link rel="prefetch" href="/assets/js/14.74953c26.js"><link rel="prefetch" href="/assets/js/15.c27128b2.js"><link rel="prefetch" href="/assets/js/16.08afb9c0.js"><link rel="prefetch" href="/assets/js/17.e49c979f.js"><link rel="prefetch" href="/assets/js/18.abd408c1.js"><link rel="prefetch" href="/assets/js/19.6339373c.js"><link rel="prefetch" href="/assets/js/20.ed3f266c.js"><link rel="prefetch" href="/assets/js/21.b68df19f.js"><link rel="prefetch" href="/assets/js/22.285ffd36.js"><link rel="prefetch" href="/assets/js/23.f725f85e.js"><link rel="prefetch" href="/assets/js/24.95675f94.js"><link rel="prefetch" href="/assets/js/25.a14acace.js"><link rel="prefetch" href="/assets/js/26.8a2fc05c.js"><link rel="prefetch" href="/assets/js/27.13266d3a.js"><link rel="prefetch" href="/assets/js/28.eeace58b.js"><link rel="prefetch" href="/assets/js/3.b8c48841.js"><link rel="prefetch" href="/assets/js/30.5eaa7ec9.js"><link rel="prefetch" href="/assets/js/31.932206dd.js"><link rel="prefetch" href="/assets/js/4.fca74266.js"><link rel="prefetch" href="/assets/js/5.e71be580.js"><link rel="prefetch" href="/assets/js/6.a030c9c4.js"><link rel="prefetch" href="/assets/js/7.b6f03a85.js"><link rel="prefetch" href="/assets/js/8.0e976cce.js"><link rel="prefetch" href="/assets/js/9.b896629e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f164480b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">一个前端小青年的学习笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/jsx到html/" class="nav-link">
+  jsx到html
+</a></div><div class="nav-item"><a href="/javaScript/" class="nav-link">
+  javaScript
+</a></div><div class="nav-item"><a href="/数据结构与算法/" class="nav-link">
+  数据结构与算法
+</a></div><div class="nav-item"><a href="/设计模式/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/前端性能优化/" class="nav-link">
+  前端性能优化
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/jsx到html/" class="nav-link">
+  jsx到html
+</a></div><div class="nav-item"><a href="/javaScript/" class="nav-link">
+  javaScript
+</a></div><div class="nav-item"><a href="/数据结构与算法/" class="nav-link">
+  数据结构与算法
+</a></div><div class="nav-item"><a href="/设计模式/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/前端性能优化/" class="nav-link">
+  前端性能优化
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="sidebar-link">介绍</a></li><li><a href="/设计模式/单例模式.html" class="sidebar-link">单例模式</a></li><li><a href="/设计模式/策略模式.html" class="active sidebar-link">策略模式</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/设计模式/策略模式.html#策略模式计算奖金" class="sidebar-link">策略模式计算奖金</a></li><li class="sidebar-sub-header"><a href="/设计模式/策略模式.html#javascript中的策略模式" class="sidebar-link">JavaScript中的策略模式</a></li></ul></li><li><a href="/设计模式/代理模式.html" class="sidebar-link">代理模式</a></li><li><a href="/设计模式/迭代器模式.html" class="sidebar-link">迭代器模式</a></li><li><a href="/设计模式/发布-订阅模式.html" class="sidebar-link">发布-订阅模式</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="策略模式"><a href="#策略模式" class="header-anchor">#</a> 策略模式</h1> <p><strong>定义一系列的算法，把他们一个个封装起来，并且使他们可以相互替换</strong></p> <h2 id="策略模式计算奖金"><a href="#策略模式计算奖金" class="header-anchor">#</a> 策略模式计算奖金</h2> <p>公司发年终奖了，奖金计算方式如下：</p> <p>绩效S：底薪*4</p> <p>绩效A：底薪*3</p> <p>绩效B：底薪*2</p> <p>如果要计算每一个人应该拿多少年终奖是一件很容易的事</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> <span class="token function-variable function">calculateBonus</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token parameter">performanceLevel<span class="token punctuation">,</span> salary</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>performanceLevel <span class="token operator">===</span> <span class="token string">'S'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> salary<span class="token operator">*</span><span class="token number">4</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>performanceLevel <span class="token operator">===</span> <span class="token string">'A'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> salary<span class="token operator">*</span><span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>performanceLevel <span class="token operator">===</span> <span class="token string">'B'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> salary<span class="token operator">*</span><span class="token number">2</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>很简单但是这里面有很多的if-else，看上去就很糟糕。而且缺乏弹性，如果要修改某个绩效对应的工资系数或者增加一个绩效都需要与函数内部做修改，如果绩效过多或者年终奖计算方式再复杂一些再去改函数内部代码都是一件很蛋疼的事情。</p> <p>如果用策略模式来重构这段代码呢？</p> <p><strong>定义一系列的算法，把他们一个个封装起来，并且使他们可以相互替换</strong></p> <p><strong>将不变的部分和变化的部分隔开</strong></p> <p>算法的使用方式是不变的，都是根据某个算法取得计算后的金额。算法的实现是变化的，每种绩效对应不同的计算规则</p> <p>策略模式的程序至少由两部分组成</p> <p>1、策略类：封装具体的算法，并负责具体的计算过程</p> <p>2、环境类：接受客户的请求，并将请求委托给某个策略类</p> <p>用策略模式重构上述代码后的实现如下</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> performanceS <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">calculate</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">salary</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> salary<span class="token operator">*</span><span class="token number">4</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> performanceA <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">calculate</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">salary</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> salary<span class="token operator">*</span><span class="token number">3</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> performanceB <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">calculate</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">salary</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> salary<span class="token operator">*</span><span class="token number">2</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> <span class="token function-variable function">Bonus</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>salary <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>startegy <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Bonus</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">setSalary</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">salary</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>salary <span class="token operator">=</span> salary
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Bonus</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">setStartegy</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">startegy</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>startegy <span class="token operator">=</span> startegy<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Bonus</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">getBonus</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>salary <span class="token operator">||</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>startegy<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>startegy<span class="token punctuation">.</span><span class="token function">calculate</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>salary<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这段代码确实看上去又臭又长，但是在实际使用中呢。以后年终奖计算再怎么变化都只用添加配置（再加一个performanceC? 或者修改performanceS）反正就是无脑的使用Bonus类就可以而不用像之前那样去面对一个庞大的if-else</p> <p>毕竟 <strong>对修改封闭，对拓展开放</strong></p> <p>而且上面的写法更偏向于静态类型语言，在javaScript可以更加简洁</p> <h2 id="javascript中的策略模式"><a href="#javascript中的策略模式" class="header-anchor">#</a> JavaScript中的策略模式</h2> <p>其实javaScript作为弱类型语言写法可以比上面的代码更灵活、简洁</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> startegy <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;S&quot;</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">salary</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> salary<span class="token operator">*</span><span class="token number">4</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;A&quot;</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">salary</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> salary<span class="token operator">*</span><span class="token number">3</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;B&quot;</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">salary</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> salary<span class="token operator">*</span><span class="token number">2</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> <span class="token function-variable function">calculateBonus</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">level<span class="token punctuation">,</span> salary</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> startegy<span class="token punctuation">[</span>level<span class="token punctuation">]</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><em>so nice</em></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/设计模式/单例模式.html" class="prev">
+        单例模式
+      </a></span> <span class="next"><a href="/设计模式/代理模式.html">
+        代理模式
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.aee3cfb5.js" defer></script><script src="/assets/js/2.a8f4ff1c.js" defer></script><script src="/assets/js/29.5918a60c.js" defer></script>
+  </body>
+</html>

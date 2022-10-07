@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>创建Fiber树 | 一个前端小青年的学习笔记</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="good good study, day day up">
+    <link rel="preload" href="/assets/css/0.styles.f164480b.css" as="style"><link rel="preload" href="/assets/js/app.aee3cfb5.js" as="script"><link rel="preload" href="/assets/js/2.a8f4ff1c.js" as="script"><link rel="preload" href="/assets/js/17.e49c979f.js" as="script"><link rel="prefetch" href="/assets/js/10.6e9d8d1f.js"><link rel="prefetch" href="/assets/js/11.4477738e.js"><link rel="prefetch" href="/assets/js/12.dd7de0f3.js"><link rel="prefetch" href="/assets/js/13.940226d2.js"><link rel="prefetch" href="/assets/js/14.74953c26.js"><link rel="prefetch" href="/assets/js/15.c27128b2.js"><link rel="prefetch" href="/assets/js/16.08afb9c0.js"><link rel="prefetch" href="/assets/js/18.abd408c1.js"><link rel="prefetch" href="/assets/js/19.6339373c.js"><link rel="prefetch" href="/assets/js/20.ed3f266c.js"><link rel="prefetch" href="/assets/js/21.b68df19f.js"><link rel="prefetch" href="/assets/js/22.285ffd36.js"><link rel="prefetch" href="/assets/js/23.f725f85e.js"><link rel="prefetch" href="/assets/js/24.95675f94.js"><link rel="prefetch" href="/assets/js/25.a14acace.js"><link rel="prefetch" href="/assets/js/26.8a2fc05c.js"><link rel="prefetch" href="/assets/js/27.13266d3a.js"><link rel="prefetch" href="/assets/js/28.eeace58b.js"><link rel="prefetch" href="/assets/js/29.5918a60c.js"><link rel="prefetch" href="/assets/js/3.b8c48841.js"><link rel="prefetch" href="/assets/js/30.5eaa7ec9.js"><link rel="prefetch" href="/assets/js/31.932206dd.js"><link rel="prefetch" href="/assets/js/4.fca74266.js"><link rel="prefetch" href="/assets/js/5.e71be580.js"><link rel="prefetch" href="/assets/js/6.a030c9c4.js"><link rel="prefetch" href="/assets/js/7.b6f03a85.js"><link rel="prefetch" href="/assets/js/8.0e976cce.js"><link rel="prefetch" href="/assets/js/9.b896629e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f164480b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">一个前端小青年的学习笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/jsx到html/" class="nav-link">
+  jsx到html
+</a></div><div class="nav-item"><a href="/javaScript/" class="nav-link">
+  javaScript
+</a></div><div class="nav-item"><a href="/数据结构与算法/" class="nav-link">
+  数据结构与算法
+</a></div><div class="nav-item"><a href="/设计模式/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/前端性能优化/" class="nav-link">
+  前端性能优化
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/jsx到html/" class="nav-link">
+  jsx到html
+</a></div><div class="nav-item"><a href="/javaScript/" class="nav-link">
+  javaScript
+</a></div><div class="nav-item"><a href="/数据结构与算法/" class="nav-link">
+  数据结构与算法
+</a></div><div class="nav-item"><a href="/设计模式/" class="nav-link">
+  设计模式
+</a></div><div class="nav-item"><a href="/前端性能优化/" class="nav-link">
+  前端性能优化
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/jsx%E5%88%B0html/" class="sidebar-link">介绍</a></li><li><a href="/jsx到html/前置理念.html" class="sidebar-link">前置理念</a></li><li><a href="/jsx到html/jsx和react.createElement.html" class="sidebar-link">react element</a></li><li><a href="/jsx到html/创建根节点.html" class="sidebar-link">创建根节点</a></li><li><a href="/jsx到html/创建Fiber树.html" class="active sidebar-link">创建Fiber树</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/jsx到html/创建Fiber树.html#demo" class="sidebar-link">demo</a></li><li class="sidebar-sub-header"><a href="/jsx到html/创建Fiber树.html#创建fiber树过程-mount阶段" class="sidebar-link">创建Fiber树过程(mount阶段)</a></li><li class="sidebar-sub-header"><a href="/jsx到html/创建Fiber树.html#创建fiber树过程-update阶段" class="sidebar-link">创建Fiber树过程(update阶段)</a></li></ul></li><li><a href="/jsx到html/render阶段.html" class="sidebar-link">render阶段</a></li><li><a href="/jsx到html/diff算法.html" class="sidebar-link">diff算法</a></li><li><a href="/jsx到html/commit阶段.html" class="sidebar-link">commit阶段</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="创建fiber树"><a href="#创建fiber树" class="header-anchor">#</a> 创建Fiber树</h1> <h2 id="demo"><a href="#demo" class="header-anchor">#</a> demo</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;react&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>count<span class="token punctuation">,</span> setCount<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>h1
+        onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          <span class="token function">setCount</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">}</span>
+      <span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>p title<span class="token operator">=</span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token operator">&gt;</span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>react渲染的时候分为两个阶段，第一阶段称为render、第二阶段称为commit。render阶段主要工作是构建Fiber树和生成effectList。因为render阶段涉及代码有些多，所以先整理构建Fiber树相关的代码。比如以上的demo是如何创建Fiber树的</p> <h2 id="创建fiber树过程-mount阶段"><a href="#创建fiber树过程-mount阶段" class="header-anchor">#</a> 创建Fiber树过程(mount阶段)</h2> <p>在上面创建根节点末尾会看到已经形成了Fiber树的开始阶段，此时workInPoress(即Fiber双缓存中正在构建或更新的那颗树)还是不存在的。此时会创建workInProgess所对应的方法是createWorkInPoegress。</p> <p><img src="http://cybccc.com/prcture/3.png" alt=""></p> <p>具体的是如何进入到这个方法的可以调试看代码执行栈。</p> <p><img src="http://cybccc.com/prcture/4.png" alt=""></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">createWorkInProgress</span><span class="token punctuation">(</span><span class="token parameter">current<span class="token punctuation">,</span> pendingProps</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> workInProgress <span class="token operator">=</span> current<span class="token punctuation">.</span>alternate<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>workInProgress <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    workInProgress <span class="token operator">=</span> <span class="token function">createFiber</span><span class="token punctuation">(</span>current<span class="token punctuation">.</span>tag<span class="token punctuation">,</span> pendingProps<span class="token punctuation">,</span> current<span class="token punctuation">.</span>key<span class="token punctuation">,</span> current<span class="token punctuation">.</span>mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    workInProgress<span class="token punctuation">.</span>elementType <span class="token operator">=</span> current<span class="token punctuation">.</span>elementType<span class="token punctuation">;</span>
+    workInProgress<span class="token punctuation">.</span>type <span class="token operator">=</span> current<span class="token punctuation">.</span>type<span class="token punctuation">;</span>
+    workInProgress<span class="token punctuation">.</span>stateNode <span class="token operator">=</span> current<span class="token punctuation">.</span>stateNode<span class="token punctuation">;</span>
+    workInProgress<span class="token punctuation">.</span>alternate <span class="token operator">=</span> current<span class="token punctuation">;</span>
+    current<span class="token punctuation">.</span>alternate <span class="token operator">=</span> workInProgress<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span>
+
+  workInProgress<span class="token punctuation">.</span>childLanes <span class="token operator">=</span> current<span class="token punctuation">.</span>childLanes<span class="token punctuation">;</span>
+  workInProgress<span class="token punctuation">.</span>lanes <span class="token operator">=</span> current<span class="token punctuation">.</span>lanes<span class="token punctuation">;</span>
+  workInProgress<span class="token punctuation">.</span>child <span class="token operator">=</span> current<span class="token punctuation">.</span>child<span class="token punctuation">;</span>
+  workInProgress<span class="token punctuation">.</span>memoizedProps <span class="token operator">=</span> current<span class="token punctuation">.</span>memoizedProps<span class="token punctuation">;</span>
+  workInProgress<span class="token punctuation">.</span>memoizedState <span class="token operator">=</span> current<span class="token punctuation">.</span>memoizedState<span class="token punctuation">;</span>
+  workInProgress<span class="token punctuation">.</span>updateQueue <span class="token operator">=</span> current<span class="token punctuation">.</span>updateQueue<span class="token punctuation">;</span> <span class="token comment">// Clone the dependencies object. This is mutated </span>
+
+  <span class="token keyword">var</span> currentDependencies <span class="token operator">=</span> current<span class="token punctuation">.</span>dependencies<span class="token punctuation">;</span>
+  workInProgress<span class="token punctuation">.</span>dependencies <span class="token operator">=</span> currentDependencies <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+    lanes<span class="token operator">:</span> currentDependencies<span class="token punctuation">.</span>lanes<span class="token punctuation">,</span>
+    firstContext<span class="token operator">:</span> currentDependencies<span class="token punctuation">.</span>firstContext
+  <span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// These will be overridden during the parent's reconciliation</span>
+
+  workInProgress<span class="token punctuation">.</span>sibling <span class="token operator">=</span> current<span class="token punctuation">.</span>sibling<span class="token punctuation">;</span>
+  workInProgress<span class="token punctuation">.</span>index <span class="token operator">=</span> current<span class="token punctuation">.</span>index<span class="token punctuation">;</span>
+  workInProgress<span class="token punctuation">.</span>ref <span class="token operator">=</span> current<span class="token punctuation">.</span>ref<span class="token punctuation">;</span>
+
+  <span class="token punctuation">{</span>
+    workInProgress<span class="token punctuation">.</span>selfBaseDuration <span class="token operator">=</span> current<span class="token punctuation">.</span>selfBaseDuration<span class="token punctuation">;</span>
+    workInProgress<span class="token punctuation">.</span>treeBaseDuration <span class="token operator">=</span> current<span class="token punctuation">.</span>treeBaseDuration<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token punctuation">{</span>
+    workInProgress<span class="token punctuation">.</span>_debugNeedsRemount <span class="token operator">=</span> current<span class="token punctuation">.</span>_debugNeedsRemount<span class="token punctuation">;</span>
+
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>workInProgress<span class="token punctuation">.</span>tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> IndeterminateComponent<span class="token operator">:</span>
+      <span class="token keyword">case</span> FunctionComponent<span class="token operator">:</span>
+      <span class="token keyword">case</span> SimpleMemoComponent<span class="token operator">:</span>
+        workInProgress<span class="token punctuation">.</span>type <span class="token operator">=</span> <span class="token function">resolveFunctionForHotReloading</span><span class="token punctuation">(</span>current<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">case</span> ClassComponent<span class="token operator">:</span>
+        workInProgress<span class="token punctuation">.</span>type <span class="token operator">=</span> <span class="token function">resolveClassForHotReloading</span><span class="token punctuation">(</span>current<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">case</span> ForwardRef<span class="token operator">:</span>
+        workInProgress<span class="token punctuation">.</span>type <span class="token operator">=</span> <span class="token function">resolveForwardRefForHotReloading</span><span class="token punctuation">(</span>current<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> workInProgress<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token comment">// Used to reuse a Fiber for a second pass.</span>
+</code></pre></div><p>在mount阶段调用workInPoress就是一大堆很单纯的赋值操作，注意在createWorkInProgress的时候有这样两句代码</p> <div class="language-js extra-class"><pre class="language-js"><code>    workInProgress<span class="token punctuation">.</span>alternate <span class="token operator">=</span> current<span class="token punctuation">;</span>
+    current<span class="token punctuation">.</span>alternate <span class="token operator">=</span> workInProgress<span class="token punctuation">;</span>
+</code></pre></div><p>这两句代码就是将current树和workInProgress相连。此时的Fiber树为
+<img src="http://cybccc.com/prcture/5.png" alt=""></p> <p>接着会循环调用performUnitOfwork来为workInProgress添加子节点。performUnitOfwork算是一个比较重要的函数了，日后再说。performUnitOfWork中又调用一系列方法调用reconcileChildren。就是这个方法为workInProgress创建子节点</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">reconcileChildren</span><span class="token punctuation">(</span><span class="token parameter">current<span class="token punctuation">,</span> workInProgress<span class="token punctuation">,</span> nextChildren<span class="token punctuation">,</span> renderLanes</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    workInProgress<span class="token punctuation">.</span>child <span class="token operator">=</span> <span class="token function">mountChildFibers</span><span class="token punctuation">(</span>workInProgress<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> nextChildren<span class="token punctuation">,</span> renderLanes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    workInProgress<span class="token punctuation">.</span>child <span class="token operator">=</span> <span class="token function">reconcileChildFibers</span><span class="token punctuation">(</span>workInProgress<span class="token punctuation">,</span> current<span class="token punctuation">.</span>child<span class="token punctuation">,</span> nextChildren<span class="token punctuation">,</span> renderLanes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这里当初看的时候确实很懵，但是mountChildFibers和reconcileChildFibers真的是同一个方法</p> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token keyword">var</span> reconcileChildFibers <span class="token operator">=</span> <span class="token function">ChildReconciler</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> mountChildFibers <span class="token operator">=</span> <span class="token function">ChildReconciler</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>大概就是这样。只是传参不同。具体在render阶段再说.而且最终会调用另一个reconcileChildFibers方法。这两个方法没有联系只是命名不同</p> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token keyword">function</span> <span class="token function">reconcileChildFibers</span><span class="token punctuation">(</span><span class="token parameter">returnFiber<span class="token punctuation">,</span> currentFirstChild<span class="token punctuation">,</span> newChild<span class="token punctuation">,</span> lanes</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> isUnkeyedTopLevelFragment <span class="token operator">=</span> <span class="token keyword">typeof</span> newChild <span class="token operator">===</span> <span class="token string">'object'</span> <span class="token operator">&amp;&amp;</span> newChild <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> newChild<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token constant">REACT_FRAGMENT_TYPE</span> <span class="token operator">&amp;&amp;</span> newChild<span class="token punctuation">.</span>key <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isUnkeyedTopLevelFragment<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      newChild <span class="token operator">=</span> newChild<span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token comment">// Handle object types</span>
+
+
+    <span class="token keyword">var</span> isObject <span class="token operator">=</span> <span class="token keyword">typeof</span> newChild <span class="token operator">===</span> <span class="token string">'object'</span> <span class="token operator">&amp;&amp;</span> newChild <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isObject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">switch</span> <span class="token punctuation">(</span>newChild<span class="token punctuation">.</span>$$<span class="token keyword">typeof</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token constant">REACT_ELEMENT_TYPE</span><span class="token operator">:</span>
+          <span class="token keyword">return</span> <span class="token function">placeSingleChild</span><span class="token punctuation">(</span><span class="token function">reconcileSingleElement</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> currentFirstChild<span class="token punctuation">,</span> newChild<span class="token punctuation">,</span> lanes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">case</span> <span class="token constant">REACT_PORTAL_TYPE</span><span class="token operator">:</span>
+          <span class="token keyword">return</span> <span class="token function">placeSingleChild</span><span class="token punctuation">(</span><span class="token function">reconcileSinglePortal</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> currentFirstChild<span class="token punctuation">,</span> newChild<span class="token punctuation">,</span> lanes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">case</span> <span class="token constant">REACT_LAZY_TYPE</span><span class="token operator">:</span>
+          <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> payload <span class="token operator">=</span> newChild<span class="token punctuation">.</span>_payload<span class="token punctuation">;</span>
+            <span class="token keyword">var</span> init <span class="token operator">=</span> newChild<span class="token punctuation">.</span>_init<span class="token punctuation">;</span> <span class="token comment">// TODO: This function is supposed to be non-recursive.</span>
+
+            <span class="token keyword">return</span> <span class="token function">reconcileChildFibers</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> currentFirstChild<span class="token punctuation">,</span> <span class="token function">init</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span class="token punctuation">,</span> lanes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> newChild <span class="token operator">===</span> <span class="token string">'string'</span> <span class="token operator">||</span> <span class="token keyword">typeof</span> newChild <span class="token operator">===</span> <span class="token string">'number'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">placeSingleChild</span><span class="token punctuation">(</span><span class="token function">reconcileSingleTextNode</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> currentFirstChild<span class="token punctuation">,</span> <span class="token string">''</span> <span class="token operator">+</span> newChild<span class="token punctuation">,</span> lanes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isArray$1</span><span class="token punctuation">(</span>newChild<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">reconcileChildrenArray</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> currentFirstChild<span class="token punctuation">,</span> newChild<span class="token punctuation">,</span> lanes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getIteratorFn</span><span class="token punctuation">(</span>newChild<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">reconcileChildrenIterator</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> currentFirstChild<span class="token punctuation">,</span> newChild<span class="token punctuation">,</span> lanes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isObject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">throwOnInvalidObjectType</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> newChild<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> newChild <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">warnOnFunctionType</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//...</span>
+    <span class="token keyword">return</span> <span class="token function">deleteRemainingChildren</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> currentFirstChild<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> reconcileChildFibers<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这里会根据newChild也就是jsx的children类型来判断走哪个。具体都差不多比如reconcileSingleElement</p> <div class="language-js extra-class"><pre class="language-js"><code>
+  <span class="token keyword">function</span> <span class="token function">reconcileSingleElement</span><span class="token punctuation">(</span><span class="token parameter">returnFiber<span class="token punctuation">,</span> currentFirstChild<span class="token punctuation">,</span> element<span class="token punctuation">,</span> lanes</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> key <span class="token operator">=</span> element<span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> child <span class="token operator">=</span> currentFirstChild<span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>child <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 此时child肯定为null的</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>element<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token constant">REACT_FRAGMENT_TYPE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> created <span class="token operator">=</span> <span class="token function">createFiberFromFragment</span><span class="token punctuation">(</span>element<span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">,</span> returnFiber<span class="token punctuation">.</span>mode<span class="token punctuation">,</span> lanes<span class="token punctuation">,</span> element<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      created<span class="token punctuation">.</span>return <span class="token operator">=</span> returnFiber<span class="token punctuation">;</span>
+      <span class="token keyword">return</span> created<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> _created4 <span class="token operator">=</span> <span class="token function">createFiberFromElement</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> returnFiber<span class="token punctuation">.</span>mode<span class="token punctuation">,</span> lanes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      _created4<span class="token punctuation">.</span>ref <span class="token operator">=</span> <span class="token function">coerceRef</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> currentFirstChild<span class="token punctuation">,</span> element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      _created4<span class="token punctuation">.</span>return <span class="token operator">=</span> returnFiber<span class="token punctuation">;</span>
+      <span class="token keyword">return</span> _created4<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><p>调用createFiberFromElement创建Fiber。同时用return指向了父节点</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">createFiberFromElement</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> mode<span class="token punctuation">,</span> lanes</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> owner <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">{</span>
+  owner <span class="token operator">=</span> element<span class="token punctuation">.</span>_owner<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> type <span class="token operator">=</span> element<span class="token punctuation">.</span>type<span class="token punctuation">;</span>
+<span class="token keyword">var</span> key <span class="token operator">=</span> element<span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+<span class="token keyword">var</span> pendingProps <span class="token operator">=</span> element<span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+<span class="token keyword">var</span> fiber <span class="token operator">=</span> <span class="token function">createFiberFromTypeAndProps</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> key<span class="token punctuation">,</span> pendingProps<span class="token punctuation">,</span> owner<span class="token punctuation">,</span> mode<span class="token punctuation">,</span> lanes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">{</span>
+  fiber<span class="token punctuation">.</span>_debugSource <span class="token operator">=</span> element<span class="token punctuation">.</span>_source<span class="token punctuation">;</span>
+  fiber<span class="token punctuation">.</span>_debugOwner <span class="token operator">=</span> element<span class="token punctuation">.</span>_owner<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">return</span> fiber<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>分离出type、key等值后调用createFiberFromTypeAndProps方法创建Fiber。这个方法顾名思义。其实内部也是调用createFiber方法具体日后再说。</p> <p>在循环所有的子节点并创建Fiber。用child和return将所有Fiber节点相连后就能得到workInProgress。然后在commit阶段会有一句</p> <div class="language-js extra-class"><pre class="language-js"><code>root<span class="token punctuation">.</span>current <span class="token operator">=</span> finishedWork<span class="token punctuation">;</span>
+</code></pre></div><p>将FiberRootNode的curreng指向WorkInProgress。至此Fiber树结构为
+<img src="http://cybccc.com/prcture/7.png" alt=""></p> <h2 id="创建fiber树过程-update阶段"><a href="#创建fiber树过程-update阶段" class="header-anchor">#</a> 创建Fiber树过程(update阶段)</h2> <p>update阶段和mount阶段所调用的函数差不多。区别在于进入createWorkInProgress方法时。此时worrkInProgress不为null。会进入到else的逻辑</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">createWorkInProgress</span><span class="token punctuation">(</span><span class="token parameter">current<span class="token punctuation">,</span> pendingProps</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> workInProgress <span class="token operator">=</span> current<span class="token punctuation">.</span>alternate<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span><span class="token punctuation">{</span>
+      <span class="token comment">//...</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    workInProgress<span class="token punctuation">.</span>pendingProps <span class="token operator">=</span> pendingProps<span class="token punctuation">;</span> <span class="token comment">// Needed because Blocks store data on type.</span>
+
+    workInProgress<span class="token punctuation">.</span>type <span class="token operator">=</span> current<span class="token punctuation">.</span>type<span class="token punctuation">;</span> <span class="token comment">// We already have an alternate.</span>
+    workInProgress<span class="token punctuation">.</span>flags <span class="token operator">=</span> NoFlags<span class="token punctuation">;</span> <span class="token comment">// The effect list is no longer valid.</span>
+
+    workInProgress<span class="token punctuation">.</span>nextEffect <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    workInProgress<span class="token punctuation">.</span>firstEffect <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    workInProgress<span class="token punctuation">.</span>lastEffect <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">{</span>
+      workInProgress<span class="token punctuation">.</span>actualDuration <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      workInProgress<span class="token punctuation">.</span>actualStartTime <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">//...</span>
+  workInProgress<span class="token punctuation">.</span>child <span class="token operator">=</span> current<span class="token punctuation">.</span>child<span class="token punctuation">;</span>
+  <span class="token comment">//...</span>
+  <span class="token keyword">return</span> workInProgress<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token comment">// Used to reuse a Fiber for a second pass.</span>
+</code></pre></div><p>接着在进入reconcileSingleElement时child也不为null会进入到while的逻辑</p> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token keyword">function</span> <span class="token function">reconcileSingleElement</span><span class="token punctuation">(</span><span class="token parameter">returnFiber<span class="token punctuation">,</span> currentFirstChild<span class="token punctuation">,</span> element<span class="token punctuation">,</span> lanes</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> key <span class="token operator">=</span> element<span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> child <span class="token operator">=</span> currentFirstChild<span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>child <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>child<span class="token punctuation">.</span>key <span class="token operator">===</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>child<span class="token punctuation">.</span>tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">case</span> Fragment<span class="token operator">:</span>
+            <span class="token punctuation">{</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>element<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token constant">REACT_FRAGMENT_TYPE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">deleteRemainingChildren</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> child<span class="token punctuation">.</span>sibling<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">var</span> existing <span class="token operator">=</span> <span class="token function">useFiber</span><span class="token punctuation">(</span>child<span class="token punctuation">,</span> element<span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                existing<span class="token punctuation">.</span>return <span class="token operator">=</span> returnFiber<span class="token punctuation">;</span>
+
+                <span class="token punctuation">{</span>
+                  existing<span class="token punctuation">.</span>_debugSource <span class="token operator">=</span> element<span class="token punctuation">.</span>_source<span class="token punctuation">;</span>
+                  existing<span class="token punctuation">.</span>_debugOwner <span class="token operator">=</span> element<span class="token punctuation">.</span>_owner<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+
+                <span class="token keyword">return</span> existing<span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+
+              <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+          <span class="token keyword">case</span> Block<span class="token operator">:</span>
+            <span class="token punctuation">{</span>
+              <span class="token keyword">var</span> type <span class="token operator">=</span> element<span class="token punctuation">.</span>type<span class="token punctuation">;</span>
+
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>type<span class="token punctuation">.</span>$$<span class="token keyword">typeof</span> <span class="token operator">===</span> <span class="token constant">REACT_LAZY_TYPE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                type <span class="token operator">=</span> <span class="token function">resolveLazyType</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>type<span class="token punctuation">.</span>$$<span class="token keyword">typeof</span> <span class="token operator">===</span> <span class="token constant">REACT_BLOCK_TYPE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>type<span class="token punctuation">.</span>_render <span class="token operator">===</span> child<span class="token punctuation">.</span>type<span class="token punctuation">.</span>_render<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token function">deleteRemainingChildren</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> child<span class="token punctuation">.</span>sibling<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                  <span class="token keyword">var</span> _existing2 <span class="token operator">=</span> <span class="token function">useFiber</span><span class="token punctuation">(</span>child<span class="token punctuation">,</span> element<span class="token punctuation">.</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                  _existing2<span class="token punctuation">.</span>type <span class="token operator">=</span> type<span class="token punctuation">;</span>
+                  _existing2<span class="token punctuation">.</span>return <span class="token operator">=</span> returnFiber<span class="token punctuation">;</span>
+
+                  <span class="token punctuation">{</span>
+                    _existing2<span class="token punctuation">.</span>_debugSource <span class="token operator">=</span> element<span class="token punctuation">.</span>_source<span class="token punctuation">;</span>
+                    _existing2<span class="token punctuation">.</span>_debugOwner <span class="token operator">=</span> element<span class="token punctuation">.</span>_owner<span class="token punctuation">;</span>
+                  <span class="token punctuation">}</span>
+
+                  <span class="token keyword">return</span> _existing2<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+
+          <span class="token keyword">default</span><span class="token operator">:</span>
+            <span class="token punctuation">{</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>child<span class="token punctuation">.</span>elementType <span class="token operator">===</span> element<span class="token punctuation">.</span>type <span class="token operator">||</span> <span class="token punctuation">(</span> <span class="token comment">// Keep this check inline so it only runs on the false path:</span>
+               <span class="token function">isCompatibleFamilyForHotReloading</span><span class="token punctuation">(</span>child<span class="token punctuation">,</span> element<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">deleteRemainingChildren</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> child<span class="token punctuation">.</span>sibling<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token keyword">var</span> _existing3 <span class="token operator">=</span> <span class="token function">useFiber</span><span class="token punctuation">(</span>child<span class="token punctuation">,</span> element<span class="token punctuation">.</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                _existing3<span class="token punctuation">.</span>ref <span class="token operator">=</span> <span class="token function">coerceRef</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> child<span class="token punctuation">,</span> element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                _existing3<span class="token punctuation">.</span>return <span class="token operator">=</span> returnFiber<span class="token punctuation">;</span>
+
+                <span class="token punctuation">{</span>
+                  _existing3<span class="token punctuation">.</span>_debugSource <span class="token operator">=</span> element<span class="token punctuation">.</span>_source<span class="token punctuation">;</span>
+                  _existing3<span class="token punctuation">.</span>_debugOwner <span class="token operator">=</span> element<span class="token punctuation">.</span>_owner<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+
+                <span class="token keyword">return</span> _existing3<span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+
+              <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token comment">// Didn't match.</span>
+
+
+        <span class="token function">deleteRemainingChildren</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> child<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">deleteChild</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> child<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      child <span class="token operator">=</span> child<span class="token punctuation">.</span>sibling<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//...</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><p>与mount阶段不同的是此时会调用useFiber克隆一个Fiber节点(只针对此demo具体更新和diff算法相关)。最后也会用这两句代码将workInProgress和current交换</p> <div class="language-js extra-class"><pre class="language-js"><code>root<span class="token punctuation">.</span>current <span class="token operator">=</span> finishedWork<span class="token punctuation">;</span>
+</code></pre></div><p>最终形成的Fiber树如下</p> <p><img src="http://cybccc.com/prcture/8.png" alt=""></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/jsx到html/创建根节点.html" class="prev">
+        创建根节点
+      </a></span> <span class="next"><a href="/jsx到html/render阶段.html">
+        render阶段
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.aee3cfb5.js" defer></script><script src="/assets/js/2.a8f4ff1c.js" defer></script><script src="/assets/js/17.e49c979f.js" defer></script>
+  </body>
+</html>
